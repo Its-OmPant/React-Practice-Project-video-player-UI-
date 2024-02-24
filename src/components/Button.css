@@ -1,0 +1,8 @@
+.btn {
+    width: 23%;
+    margin: 10px 20px;
+    padding: 20px 50px;
+    border-radius: 25px;
+    background-color: hotpink;
+    border: 0;
+}
