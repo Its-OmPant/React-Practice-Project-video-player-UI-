@@ -1,6 +1,5 @@
 .card {
     width: 21rem;
-    height: 20rem;
     margin: 1em;
     padding: 1em;
     background-color: rgb(44, 44, 44);
@@ -8,7 +7,6 @@
 }
 
 .card:hover{
-    transform: scale(1.03);
     box-shadow: 0 2px 15px #88888872;
 }
 

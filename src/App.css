@@ -1,11 +1,10 @@
+
 .container {
   width: 100%;
   min-height: 100vh;
   background-color: #100f0f;
   color: white;
-  display: flex;
-  flex-direction: column;
-  padding: 25px;
+  padding: 5px;
 }
 
 .videoContainer{

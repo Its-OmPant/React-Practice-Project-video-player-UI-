@@ -1,5 +1,6 @@
 const data = [
 	{
+		id:1,
 		thumbnail: 1,
 		title: "JavaScript Tutorial",
 		channelName: "CodeWithHarry",
@@ -7,6 +8,7 @@ const data = [
 		time: "11 Months ago",
 	},
 	{
+		id:2,
 		thumbnail: 2,
 		title: "React JS Tutorial",
 		channelName: "Coder Singh",
@@ -14,6 +16,7 @@ const data = [
 		time: "11 days ago",
 	},
 	{
+		id:3,
 		thumbnail: 3,
 		title: "JavaScript Runtime in One Video",
 		channelName: "Hitesh Chaudhary",
@@ -21,6 +24,7 @@ const data = [
 		time: "11 Months ago",
 	},
 	{
+		id:4,
 		thumbnail: 4,
 		title: "C\\C++ tutorial for begginers",
 		channelName: "CodeWithHarry",
