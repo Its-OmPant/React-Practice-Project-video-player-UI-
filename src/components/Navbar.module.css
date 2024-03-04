@@ -1,0 +1,46 @@
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #121010;
+}
+
+.search {
+    width: 75%;
+    margin: 10px;
+    padding: 5px;
+    background-color: #424242;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.searchInput {
+    border: 0;
+    margin: 0;
+    padding: 8px 10px;
+    width: 95%;
+    height: 100%;
+    background-color: #424242;
+    color: white;
+    font-size: 1.2em;
+}
+
+.searchInput:focus,
+.searchInput:active {
+    outline: 0;
+}
+
+.searchVideoBtn {
+    font-size: 1.4em;
+    cursor: pointer;
+    user-select: none;
+}
+
+.uploadVideoBtn {
+    padding: 15px 35px;
+    background-color: #424242;
+    color: #fff;
+    border-radius: 8px;
+    border: 0;
+}

@@ -1,0 +1,21 @@
+.searchContainerNav {
+    display: flex;
+    margin: 20px auto;
+    justify-content: flex-start;
+    align-items: baseline;
+    width: 70%;
+}
+
+.searchContainerNavButton {
+    margin-right: 30px;
+    background-color: beige;
+    color: black;
+    font-size: 1.5em;
+}
+
+.errorContainer {
+    width: 50%;
+    margin: 10px auto;
+    text-align: center;
+    color: rgb(184, 65, 65);
+}

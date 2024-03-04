@@ -1,0 +1,51 @@
+.card {
+    width: 21rem;
+    margin: 1em;
+    padding: 1em;
+    background-color: rgb(44, 44, 44);
+    border-radius: 15px;
+}
+
+.icons {
+    user-select: none;
+    font-size: 1.3em;
+    width: 65px;
+    padding: 5px;
+    background-color: rgb(58, 58, 58);
+    margin: 0 8px;
+    border-radius: 25px;
+    text-align: center;
+}
+
+.card:hover {
+    box-shadow: 0 2px 15px #88888872;
+}
+
+.thumbnail {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.title {
+    margin: 10px 5px;
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #f1f1f1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.channelName,
+.views {
+    line-height: 22px;
+    color: #c9c9c9;
+}
+
+.buttons {
+    display: flex;
+    height: 40px;
+}
