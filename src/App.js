@@ -12,6 +12,8 @@ function App() {
 	const [searchResult, setSearchResult] = useState([]);
 	const [isSearching, setIsSearching] = useState(false);
 
+	const [editableVideo, setEditableVideo] = useState("");
+
 	let addVideo = (newVideo) => {
 		newVideo.id = videos.length + 1;
 		setVideos([...videos, newVideo]);
@@ -21,11 +23,22 @@ function App() {
 		setVideos(videos.filter((v) => v.id !== id));
 	};
 
+	let editVideo = (id) => {
+		let selectedVideo = videos.find((v) => v.id === id);
+		setEditableVideo(selectedVideo);
+	};
+
+	let updateVideo = (newVideo) => {
+		let index = videos.findIndex((video) => video.id === newVideo.id);
+		let newArray = [...videos];
+		newArray.splice(index, 1, newVideo);
+		setVideos(newArray);
+	};
+
 	let searchElement = (inputString) => {
 		setIsSearching(true);
 		let result = [];
 		let searchStrings = inputString.trim().split(" ");
-		console.log(searchStrings);
 		searchStrings.forEach((str) => {
 			result = videos.filter((v) => {
 				return v.title.toLowerCase().includes(str.toLowerCase());
@@ -39,11 +52,17 @@ function App() {
 			<Navbar searchElement={searchElement} />
 			{!isSearching ? (
 				<>
-					<AddVideo addVideoHandler={addVideo} />
+					<AddVideo
+						addVideoHandler={addVideo}
+						updateVideo={updateVideo}
+						editableVideo={editableVideo}
+						setEditableVideo={setEditableVideo}
+					/>
 					<VideoList
 						className="videoContainer"
 						videos={videos}
 						deleteVideo={deleteVideo}
+						editVideo={editVideo}
 					/>
 				</>
 			) : (

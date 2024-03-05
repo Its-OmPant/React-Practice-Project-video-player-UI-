@@ -1,48 +1,79 @@
+import { useEffect, useState } from "react";
+
 import styles from "./AddVideo.module.css";
-function AddVideo({ addVideoHandler }) {
+function AddVideo({
+	addVideoHandler,
+	updateVideo,
+	editableVideo,
+	setEditableVideo,
+}) {
 	let initialValue = {
 		title: "",
 		views: "",
 		channelName: "Your Channel Name",
 		time: "0 minutes ago",
 	};
+	const [title, setTitle] = useState(initialValue.title);
+	const [views, setViews] = useState(initialValue.views);
+
+	let handleTitleChange = (e) => {
+		setTitle(e.target.value);
+	};
+	let handleViewsChange = (e) => {
+		setViews(e.target.value);
+	};
 
 	function handleSubmit(e) {
 		e.preventDefault();
 
-		let form = e.target.parentElement;
-		let newTitle = form.title.value;
-		let newViews = form.views.value;
-		if (newTitle === "" || newViews === "") {
+		let obj;
+		if (title === "" || views === "") {
 			alert("Please Enter Valid Input values");
 			return;
 		}
-		let obj = { ...initialValue, title: newTitle, views: newViews };
-		addVideoHandler(obj);
-		form.title.value = "";
-		form.views.value = "";
+
+		if (editableVideo) {
+			obj = { ...editableVideo, title: title, views: views };
+			updateVideo(obj);
+			setEditableVideo("");
+		} else {
+			obj = { ...initialValue, title: title, views: views };
+			addVideoHandler(obj);
+		}
+
+		setTitle("");
+		setViews("");
 	}
 
+	useEffect(() => {
+		setTitle(editableVideo.title);
+		setViews(editableVideo.views);
+	}, [editableVideo]);
+
 	return (
-		<form className={styles.addVideoForm}>
+		<form id="form" className={styles.addVideoForm}>
 			<input
 				className={styles.addVideoInputs}
 				type="text"
-				name="title"
 				placeholder="Enter Video Title"
+				// name="title"
+				value={title}
+				onChange={handleTitleChange}
 			/>
 			<input
 				className={styles.addVideoInputs}
 				type="text"
-				name="views"
 				placeholder="Enter Views"
+				// name="views"
+				value={views}
+				onChange={handleViewsChange}
 			/>
 
 			<button
 				className={styles.addVideoBtn}
 				onClick={handleSubmit}
 				type="submit">
-				Add
+				{editableVideo ? "Edit" : "Add"}
 			</button>
 		</form>
 	);

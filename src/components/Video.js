@@ -1,7 +1,15 @@
 import styles from "./Video.module.css";
 import Button from "./Button";
 import p1 from "../images/thumb1.jpg";
-function Video({ id, title, channelName, views, time, deleteVideo }) {
+function Video({
+	id,
+	title,
+	channelName,
+	views,
+	time,
+	deleteVideo,
+	editVideo,
+}) {
 	let handleDelete = () => {
 		let decision = window.confirm("Are you sure to Delete this video");
 		if (decision) {
@@ -10,7 +18,7 @@ function Video({ id, title, channelName, views, time, deleteVideo }) {
 	};
 
 	let handleEdit = () => {
-		console.log(`Editing ${title}..`);
+		editVideo(id);
 	};
 
 	return (
