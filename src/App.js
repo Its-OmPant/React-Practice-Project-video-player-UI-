@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import "./App.css";
 import videoData from "./data/videos.js";
 import VideoList from "./components/VideoList.js";
@@ -7,32 +7,33 @@ import Navbar from "./components/Navbar.js";
 import SearchContainer from "./components/SearchContainer.js";
 
 function App() {
-	const [videos, setVideos] = useState(videoData);
+	function videoReducer(videos, action) {
+		switch (action.type) {
+			case "ADD":
+				return [...videos, { ...action.payload, id: videos.length + 1 }];
+
+			case "DELETE":
+				return videos.filter((v) => v.id !== action.payload);
+			case "UPDATE":
+				let index = videos.findIndex((video) => video.id === action.payload.id);
+				let newArray = [...videos];
+				newArray.splice(index, 1, action.payload);
+				return newArray;
+			default:
+				return videos;
+		}
+	}
+
+	const [videos, dispatch] = useReducer(videoReducer, videoData);
+
+	const [editableVideo, setEditableVideo] = useState("");
 
 	const [searchResult, setSearchResult] = useState([]);
 	const [isSearching, setIsSearching] = useState(false);
 
-	const [editableVideo, setEditableVideo] = useState("");
-
-	let addVideo = (newVideo) => {
-		newVideo.id = videos.length + 1;
-		setVideos([...videos, newVideo]);
-	};
-
-	let deleteVideo = (id) => {
-		setVideos(videos.filter((v) => v.id !== id));
-	};
-
 	let editVideo = (id) => {
 		let selectedVideo = videos.find((v) => v.id === id);
 		setEditableVideo(selectedVideo);
-	};
-
-	let updateVideo = (newVideo) => {
-		let index = videos.findIndex((video) => video.id === newVideo.id);
-		let newArray = [...videos];
-		newArray.splice(index, 1, newVideo);
-		setVideos(newArray);
 	};
 
 	let searchElement = (inputString) => {
@@ -53,15 +54,14 @@ function App() {
 			{!isSearching ? (
 				<>
 					<AddVideo
-						addVideoHandler={addVideo}
-						updateVideo={updateVideo}
+						dispatch={dispatch}
 						editableVideo={editableVideo}
 						setEditableVideo={setEditableVideo}
 					/>
 					<VideoList
 						className="videoContainer"
 						videos={videos}
-						deleteVideo={deleteVideo}
+						dispatch={dispatch}
 						editVideo={editVideo}
 					/>
 				</>

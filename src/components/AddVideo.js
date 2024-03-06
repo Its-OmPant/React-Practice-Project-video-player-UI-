@@ -1,20 +1,15 @@
 import { useEffect, useState } from "react";
 
 import styles from "./AddVideo.module.css";
-function AddVideo({
-	addVideoHandler,
-	updateVideo,
-	editableVideo,
-	setEditableVideo,
-}) {
+function AddVideo({ dispatch, editableVideo, setEditableVideo }) {
 	let initialValue = {
 		title: "",
 		views: "",
 		channelName: "Your Channel Name",
 		time: "0 minutes ago",
 	};
-	const [title, setTitle] = useState(initialValue.title);
-	const [views, setViews] = useState(initialValue.views);
+	const [title, setTitle] = useState("");
+	const [views, setViews] = useState("");
 
 	let handleTitleChange = (e) => {
 		setTitle(e.target.value);
@@ -34,11 +29,11 @@ function AddVideo({
 
 		if (editableVideo) {
 			obj = { ...editableVideo, title: title, views: views };
-			updateVideo(obj);
+			dispatch({ type: "UPDATE", payload: obj });
 			setEditableVideo("");
 		} else {
 			obj = { ...initialValue, title: title, views: views };
-			addVideoHandler(obj);
+			dispatch({ type: "ADD", payload: obj });
 		}
 
 		setTitle("");

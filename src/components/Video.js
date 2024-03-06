@@ -1,19 +1,11 @@
 import styles from "./Video.module.css";
 import Button from "./Button";
 import p1 from "../images/thumb1.jpg";
-function Video({
-	id,
-	title,
-	channelName,
-	views,
-	time,
-	deleteVideo,
-	editVideo,
-}) {
+function Video({ id, title, channelName, views, time, dispatch, editVideo }) {
 	let handleDelete = () => {
 		let decision = window.confirm("Are you sure to Delete this video");
 		if (decision) {
-			deleteVideo(id);
+			dispatch({ type: "DELETE", payload: id });
 		}
 	};
 

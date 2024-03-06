@@ -1,10 +1,10 @@
 import Video from "./Video.js";
-function VideoList({ videos, className, deleteVideo, editVideo }) {
+function VideoList({ videos, className, dispatch, editVideo }) {
 	return (
 		<div className={className}>
 			{videos.map((v) => (
 				<Video
-					deleteVideo={deleteVideo}
+					dispatch={dispatch}
 					editVideo={editVideo}
 					key={v.id}
 					id={v.id}
